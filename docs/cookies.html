@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>geoNFT plugin – Cookie statement</title></head>
+<body>
+<p><img src="logo.png" width="96" height="96" alt="geoNFT"></p>
+<h1>Cookie statement</h1>
+<p><b>geoNFT plugin for QGIS</b> · Version {{legal_version}}</p>
+
+<h2>1. The plugin itself</h2>
+<p>The geoNFT plugin does not set, read or store cookies. It uses no tracking technology: no analytics, pixels,
+fingerprinting or advertising identifiers. The page the plugin shows in your browser after sign-in
+(<code>http://localhost:7070/cs-review</code>) sets no cookies either.</p>
+
+<h2>2. Cookies set during browser sign-in</h2>
+<p>Sign in, create account and sign out happen in your system browser, at the geoNFT identity provider on
+<code>portal.geonft.eu</code>. The identity provider (Keycloak) sets the following cookies in that browser. They
+are strictly necessary to sign you in securely, so they need no consent. They are not used for tracking or
+advertising and are not shared with third parties.</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<tr><th>Cookie</th><th>Purpose</th><th>Lifetime</th></tr>
+<tr><td><code>AUTH_SESSION_ID</code>, <code>KC_AUTH_SESSION_HASH</code></td>
+<td>Tie the steps of one sign-in together and protect them against interference.</td>
+<td>Until the browser closes, or the end of the sign-in</td></tr>
+<tr><td><code>KC_RESTART</code></td>
+<td>Lets an interrupted sign-in start again.</td>
+<td>Until the browser closes</td></tr>
+<tr><td><code>KEYCLOAK_IDENTITY</code>, <code>KEYCLOAK_SESSION</code></td>
+<td>Keep you signed in at the identity provider, so that QGIS and the portal can sign you in without asking
+again, and so that sign-out can end the session.</td>
+<td>Until you sign out or the session expires</td></tr>
+<tr><td><code>KEYCLOAK_LOCALE</code></td>
+<td>Remembers the language you chose on the sign-in page, only if you choose one.</td>
+<td>Until the browser closes</td></tr>
+</table>
+<p>If you also use the portal website, it sets its own sign-in cookies (<code>cs_portal</code>,
+<code>cs_id_hint</code>, <code>cs_oauth_state</code>). They are described in the
+<a href="https://portal.geonft.eu/privacy">portal privacy notice</a>.</p>
+
+<h2>3. Other servers</h2>
+<p>The plugin reads data from the geoNFT services, from IPFS gateways and from the OpenStreetMap tile servers through
+the QGIS network functions. The geoNFT services do not set cookies on these requests. If a third-party server sends
+a cookie, QGIS handles it in its own network layer; the plugin does not read or use it.</p>
+
+<h2>4. Similar storage on your computer</h2>
+<p>To keep you signed in, the plugin stores your session tokens in the QGIS settings. This is strictly necessary
+for the service you request. Section 3 of the <a href="privacy.html">privacy statement</a> lists what is stored and
+section 8 explains how to remove it.</p>
+
+<h2>5. Removing cookies</h2>
+<p>Press <b>Sign out</b> in the geoNFT panel to end the identity provider session; this also removes the session
+cookies. You can delete cookies at any time in your browser settings. Blocking the cookies in section 2 prevents
+sign-in.</p>
+
+<h2>6. Contact</h2>
+<p>{{operator_name}}, {{operator_address}}, {{operator_email}}</p>
+</body>
+</html>

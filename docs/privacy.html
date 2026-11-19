@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="utf-8"><title>geoNFT plugin – Privacy statement</title></head>
+<body>
+<p><img src="logo.png" width="96" height="96" alt="geoNFT"></p>
+<h1>Privacy statement</h1>
+<p><b>geoNFT plugin for QGIS</b> · Version {{legal_version}}</p>
+
+<p>This statement explains which personal data the geoNFT plugin for QGIS (the "plugin") stores on your
+computer and sends to online services, why, and what your rights are. The geoNFT portal account itself is
+covered by the privacy notice of the portal at
+<a href="https://portal.geonft.eu/privacy">https://portal.geonft.eu/privacy</a>.</p>
+
+<h2>1. Who is responsible</h2>
+<p>{{operator_name}}<br>{{operator_address}}<br>{{operator_email}}<br>
+<a href="{{operator_website}}">{{operator_website}}</a></p>
+{{operator_dpo_block}}
+
+<h2>2. In short</h2>
+<ul>
+<li>The plugin contains no analytics, telemetry, advertising or tracking. It does not report how you use QGIS.</li>
+<li>The plugin contacts online services only when you press a button that needs them: sign in, create account,
+sign out, refresh deployments, show observations, verify against ledger, or open an observation picture.</li>
+<li>Before the first connection the plugin asks you to accept the terms of use and to read this statement.</li>
+</ul>
+
+<h2>3. Data stored on your computer</h2>
+<table border="1" cellpadding="4" cellspacing="0">
+<tr><th>Where</th><th>What</th><th>Until</th></tr>
+<tr><td>QGIS settings, group <code>geonft</code></td>
+<td>Access token and ID token of your portal session, their expiry time, the email address and the account
+identifier (<code>sub</code>) taken from the token, the id of the OAuth2 configuration, any service addresses you
+changed, and the version and date of the terms you accepted.</td>
+<td>Sign out removes the tokens, email and account identifier. Uninstalling the plugin does not remove QGIS
+settings: see section 8.</td></tr>
+<tr><td>QGIS authentication database</td>
+<td>An OAuth2 configuration named "geoNFT portal" with the public client id, the portal addresses and the local
+redirect address. It holds no password. QGIS encrypts it with your master password.</td>
+<td>Until you delete it in Settings › Options › Authentication.</td></tr>
+<tr><td>QGIS Log Messages panel, tab <code>geoNFT</code></td>
+<td>After sign-in the access token, with its account identifier and expiry, so that it can be copied for
+troubleshooting. Request errors and verification results.</td>
+<td>Until QGIS closes, unless you have configured QGIS to write its log to a file.</td></tr>
+<tr><td>Your QGIS project</td>
+<td>The observation layers you draw and the verification results in their <code>chain_check</code> column.</td>
+<td>Only written to disk when you save the project.</td></tr>
+</table>
+<p>QGIS stores its settings unencrypted in your user profile. Anyone with access to your user account can read
+the access token there until it expires (at most a few minutes to hours, as set by the portal). Sign out when you
+use a shared computer.</p>
+
+<h2>4. Data sent to online services</h2>
+<p>Every connection reveals your IP address, the time and the QGIS version (in the User-Agent header) to the
+operator of the server. In addition:</p>
+<table border="1" cellpadding="4" cellspacing="0">
+<tr><th>Service</th><th>When</th><th>What is sent</th></tr>
+<tr><td>geoNFT identity provider<br><code>portal.geonft.eu</code></td>
+<td>Sign in, create account, sign out</td>
+<td>The plugin opens your system browser. You enter your sign-in details in the browser, never in QGIS. The plugin
+then sends the one-time authorization code and a PKCE verifier and receives your tokens, which contain your
+email address and account identifier. Sign out sends your ID token so the browser session can end.</td></tr>
+<tr><td>geoNFT portal<br><code>portal.geonft.eu</code></td>
+<td>Refresh deployments</td>
+<td>Your access token, to list the deployments you hold a license for.</td></tr>
+<tr><td>geoNFT Connected Systems<br><code>cs.geonft.eu</code></td>
+<td>Show observations, verify against ledger</td>
+<td>Your access token and the deployment id. The service may ask the wallet linked to your account to confirm
+your license; that request reaches your phone through the portal, not through QGIS.</td></tr>
+<tr><td>geoNFT ledger API<br><code>ledger.geonft.eu</code></td>
+<td>Verify against ledger</td>
+<td>Your access token and the deployment id.</td></tr>
+<tr><td>geoNFT Indy resolver<br><code>resolver.geonft.eu</code></td>
+<td>Verify against ledger</td>
+<td>The public identifier (DID) of the drone. No token and no data about you.</td></tr>
+<tr><td>IPFS gateways named in the observations</td>
+<td>Verify against ledger, opening a picture</td>
+<td>The address of the picture. No token and no data about you.</td></tr>
+<tr><td>OpenStreetMap tile servers<br><code>tile.openstreetmap.org</code>, OpenStreetMap Foundation, United Kingdom</td>
+<td>When the plugin adds the OpenStreetMap base map and while you pan or zoom it</td>
+<td>The map tiles in view, which reveal the area you look at. See the
+<a href="https://osmfoundation.org/wiki/Privacy_Policy">OpenStreetMap Foundation privacy policy</a>.</td></tr>
+</table>
+<p>During sign-in, create account and sign out the plugin listens on <code>http://localhost:7070/cs-review</code>
+for the browser to return. The listener accepts connections from your own computer only and stops as soon as the
+browser has returned, after five minutes, or when you press Cancel.</p>
+<p>If you change the service addresses in the QGIS settings, the operators of the servers you enter receive this
+data instead, under their own terms.</p>
+
+<h2>5. Purposes and legal basis</h2>
+<ul>
+<li>Sign-in, listing your licensed deployments, reading observations and verifying them are needed to provide the
+service you request under the terms of use (Art. 6(1)(b) GDPR).</li>
+<li>Server logs with IP addresses keep the services secure and working (legitimate interest, Art. 6(1)(f) GDPR).
+How long the geoNFT services keep them is stated in the portal privacy notice.</li>
+<li>The base map is loaded because it is needed to show the observations on a map (Art. 6(1)(b) GDPR).</li>
+</ul>
+
+<h2>6. Recipients and transfers</h2>
+<p>The geoNFT services are run by the operator named in section 1. Processors used for the geoNFT services are
+listed in the portal privacy notice. The OpenStreetMap Foundation is an independent controller in the United
+Kingdom, a country with an adequacy decision of the European Commission. IPFS gateways are run by third parties
+named in the observation data.</p>
+
+<h2>7. Your rights</h2>
+<p>You have the right of access, rectification, erasure, restriction of processing, data portability and
+objection, and you may withdraw a consent at any time with effect for the future. Write to the address in
+section 1. In the portal, the Account page lets you download the data held about you and delete your account.
+You can also lodge a complaint with a data protection supervisory authority, in particular in the country where
+you live or work.</p>
+
+<h2>8. Removing the data from your computer</h2>
+<ol>
+<li>Press <b>Sign out</b> in the geoNFT panel. This removes the tokens, email and account identifier and ends the
+browser session.</li>
+<li>In Settings › Options › Advanced, delete the <code>geonft</code> group to remove the remaining settings and
+the record of the accepted terms.</li>
+<li>In Settings › Options › Authentication, delete the configuration "geoNFT portal".</li>
+<li>Remove the plugin in Plugins › Manage and Install Plugins.</li>
+</ol>
+
+<h2>9. Changes</h2>
+<p>When this statement changes in a way that matters, the plugin shows the new version before it connects
+again. The version and date are at the top.</p>
+</body>
+</html>

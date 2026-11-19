@@ -1,0 +1,32 @@
+[general]
+name=geoNFT plugin
+qgisMinimumVersion=4.0
+qgisMaximumVersion=4.99
+description=Sign in to the geoNFT portal, map licensed drone deployment observations and verify them against the ledger
+about=Experimental. Requires a geoNFT portal account and a license for the deployments you want to see (https://portal.geonft.eu).
+  The plugin signs QGIS in to the geoNFT portal in your system browser (OAuth2 with PKCE; it listens on http://localhost:7070/cs-review only while signing in). It lists the deployments you hold a license for (Plugins > geoNFT plugin > Deployments, or the geoNFT panel) and draws the observations of the selected deployment on an OpenStreetMap base map. Click a dot to see its telemetry or picture.
+  Verify against ledger reads the deployment NFT from the geoNFT ledger API (https://ledger.geonft.eu, setting geonft/ledger_url) and recomputes the manifest hash and the server chain from the Connected Systems lineage. It checks the endorsement signatures of the mint transaction against the CA certificates shipped in trust/, the drone's ES256 DPoP proofs, drone chain and seal against the drone key fixed in the manifest, and the picture bytes from IPFS against the anchor and the drone's signature. It reads the drone's did:indy from the Indy resolver (https://resolver.geonft.eu, setting geonft/indy_resolver_url) and checks that the cnf ATTRIB on its NYM names the DPoP key fixed in the manifest.
+  Online services: the plugin contacts portal.geonft.eu, cs.geonft.eu, ledger.geonft.eu, resolver.geonft.eu, the IPFS gateways named in the observations and tile.openstreetmap.org, and only after you accept the terms of use. It contains no analytics or tracking. The privacy statement, terms of use and cookie statement are in Plugins > geoNFT plugin and in the docs folder of the plugin.
+version=0.7.0
+author=CHANGE_ME
+email=CHANGE_ME
+changelog=0.7.0
+  - Renamed from Certificate review to geoNFT plugin, with the geoNFT logo as icon and a toolbar button.
+  - Privacy statement, terms of use and cookie statement, shown in the plugin menu and the panel; the terms are accepted once before the first connection.
+  - Settings moved from the cs_review group to geonft (done automatically on first start).
+  - OpenStreetMap attribution recorded on the base map layer.
+  - A response cut off before its end is read again (up to 3 attempts) and otherwise reported with its size; a cut picture is no longer mistaken for a hash mismatch.
+  - Asks you to authorize in your wallet app only while Connected Systems is waiting for it; repeated reads within the server's approval window (needs a Connected Systems version that sends License-Grant-Expires) do not ask again.
+  - Marked experimental.
+  0.6.0
+  - Drone did:indy check against the Indy resolver.
+experimental=True
+deprecated=False
+tags=drone,uav,nft,blockchain,ledger,verification,ipfs,oauth2,observations,web
+homepage=CHANGE_ME
+repository=CHANGE_ME
+tracker=CHANGE_ME
+icon=icon.png
+category=Web
+hasProcessingProvider=no
+server=False
