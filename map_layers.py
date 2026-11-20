@@ -1,6 +1,7 @@
 """Draw a deployment's observations on an OpenStreetMap base map."""
 
 import json
+import logging
 
 from qgis.core import (
     QgsCategorizedSymbolRenderer,
@@ -19,6 +20,8 @@ from qgis.core import (
 )
 
 from . import cs_api
+
+_logger = logging.getLogger("geonft")
 
 OSM_NAME = "OpenStreetMap"
 OSM_HOST = "tile.openstreetmap.org"
@@ -43,15 +46,15 @@ def _set_osm_attribution(layer):
         metadata.setRights([OSM_ATTRIBUTION + " (" + OSM_ATTRIBUTION_URL + ")"])
         metadata.setLicenses(["Open Database License (ODbL)"])
         layer.setMetadata(metadata)
-    except Exception:  # older QGIS API: the attribution is optional metadata
-        pass
+    except Exception as err:  # older QGIS API: the attribution is optional metadata
+        _logger.debug("OSM attribution not written to the layer metadata: %s", err)
     server = getattr(layer, "serverProperties", None)
     if server is not None:
         try:
             server().setAttribution(OSM_ATTRIBUTION)
             server().setAttributionUrl(OSM_ATTRIBUTION_URL)
-        except Exception:
-            pass
+        except Exception as err:
+            _logger.debug("OSM attribution not written to the server properties: %s", err)
 
 
 def ensure_osm_basemap(project=None):

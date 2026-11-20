@@ -632,12 +632,9 @@ def _http_servers_on(port):
     for obj in gc.get_objects():
         if type(obj).__name__ not in {"HTTPServer", "Server"}:
             continue
-        if not hasattr(obj, "server_close") or not hasattr(obj, "server_address"):
+        if not hasattr(obj, "server_close"):
             continue
-        try:
-            address = obj.server_address
-        except Exception:
-            continue
+        address = getattr(obj, "server_address", None)
         if isinstance(address, tuple) and len(address) >= 2 and address[1] == port:
             found.append(obj)
     return found
