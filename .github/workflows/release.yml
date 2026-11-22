@@ -50,5 +50,4 @@ jobs:
         with:
           files: |
             *.zip
-        env:
-          GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+            token: ${{ secrets.GITHUB_TOKEN }}
